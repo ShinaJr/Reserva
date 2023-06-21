@@ -1,5 +1,6 @@
 import {
   Button,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
 import DatePicker from "react-native-date-ranges";
 import Modal from "react-native-modal";
+import reservaIcon from "../assets/Images/Reserva.com.png"; 
 
 const HomeScreen = () => {
   //storing our selected date inside a state when it's selected  using the useState hook
@@ -83,6 +85,7 @@ const HomeScreen = () => {
           >
             {/* Destination */}
             <Pressable
+            onPress={()=> navigation.navigate("Search")}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -142,7 +145,7 @@ const HomeScreen = () => {
                   setSelectedDates(startDate, endDate)
                 }
                 allowFontScaling={false} // optional
-                placeholder={"Jul 27, 2023 → Sep 10, 2023"}
+                placeholder={"Select Your Dates..."}
                 mode={"range"}
               />
             </Pressable>
@@ -162,7 +165,7 @@ const HomeScreen = () => {
               <Ionicons name="ios-person-outline" size={24} color="black" />
               <TextInput
                 placeholderTextColor="red"
-                placeholder="1 room * 2 adults * 0 children"
+                placeholder={`${rooms} room * ${adults} adults * ${children} children`}
               />
             </Pressable>
             {/* Search Button */}
@@ -187,6 +190,92 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </View>
+          <Text
+            style={{ marginHorizontal: 20, fontSize: 17, fontWeight: "500" }}
+          >
+            Travel More spend less
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                backgroundColor: "#2c3968",
+                borderRadius: 10,
+                padding: 10,
+                marginHorizontal: 20,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                Genius
+              </Text>
+              <Text style={{ color: "white", fontSize: 15, fontWeight: "500" }}>
+                You are at genius level one in our loyalty program
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                20% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+               Complete 5 stays to unlock level 2
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 10,
+                marginHorizontal: 20,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                15% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                Enjoy discounts at various properties in Nigeria
+              </Text>
+            </Pressable>
+          </ScrollView>
+          <Pressable style={{marginTop:20, justifyContent:"center", alignItems:"center" }}>
+            <Image style={{width:200, height:50, resizeMode:"cover"}}
+              source={reservaIcon}
+            />
+          </Pressable>
         </ScrollView>
       </View>
       <Modal
@@ -279,7 +368,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
                 <Pressable
-                onPress={()=> setRooms((c) => c+1)}
+                  onPress={() => setRooms((c) => c + 1)}
                   style={{
                     width: 26,
                     height: 26,
@@ -315,7 +404,7 @@ const HomeScreen = () => {
                 style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
               >
                 <Pressable
-                onPress={()=> setAdults(Math.max(1, adults-1))}
+                  onPress={() => setAdults(Math.max(1, adults - 1))}
                   style={{
                     width: 26,
                     height: 26,
@@ -349,7 +438,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
                 <Pressable
-                onPress={()=> setAdults((c) => c+1)}
+                  onPress={() => setAdults((c) => c + 1)}
                   style={{
                     width: 26,
                     height: 26,
@@ -385,7 +474,7 @@ const HomeScreen = () => {
                 style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
               >
                 <Pressable
-                onPress={()=> setChildren(Math.max(0, children-1))}
+                  onPress={() => setChildren(Math.max(0, children - 1))}
                   style={{
                     width: 26,
                     height: 26,
@@ -419,7 +508,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
                 <Pressable
-                onPress={()=> setChildren((c) => c+1)}
+                  onPress={() => setChildren((c) => c + 1)}
                   style={{
                     width: 26,
                     height: 26,
