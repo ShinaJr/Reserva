@@ -14,12 +14,12 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
 import DatePicker from "react-native-date-ranges";
 import Modal from "react-native-modal";
-import reservaIcon from "../assets/Images/Reserva.com.png"; 
+import reservaIcon from "../assets/Images/Reserva.com.png";
 
 const HomeScreen = () => {
-  //storing our selected date inside a state when it's selected  using the useState hook
+  //storing our selected dates inside a state when it's selected  using the useState hook for it to be available to use in other screens
   const [selectedDates, setSelectedDates] = useState();
-  // console.warn(selectedDates)
+  // console.log(selectedDates)
   //initializing states for the rooms, adults and children so it can be updated when the state changes
   const [rooms, setRooms] = useState(1);
   const [children, setChildren] = useState(0);
@@ -57,6 +57,7 @@ const HomeScreen = () => {
       ),
     });
   }, []);
+  //onConfirm method to store the date in the state
   const customButton = (onConfirm) => {
     return (
       <Button
@@ -85,7 +86,7 @@ const HomeScreen = () => {
           >
             {/* Destination */}
             <Pressable
-            onPress={()=> navigation.navigate("Search")}
+              onPress={() => navigation.navigate("Search")}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -163,10 +164,9 @@ const HomeScreen = () => {
               onPress={toggleModal}
             >
               <Ionicons name="ios-person-outline" size={24} color="black" />
-              <TextInput
-                placeholderTextColor="red"
-                placeholder={`${rooms} room * ${adults} adults * ${children} children`}
-              />
+              <Text style={{ color: "red" }}>
+                {`${rooms} room * ${adults} adults * ${children} children`}
+              </Text>
             </Pressable>
             {/* Search Button */}
             <Pressable
@@ -242,7 +242,7 @@ const HomeScreen = () => {
                 20% Discounts
               </Text>
               <Text style={{ fontSize: 15, fontWeight: "500" }}>
-               Complete 5 stays to unlock level 2
+                Complete 5 stays to unlock level 2
               </Text>
             </Pressable>
             <Pressable
@@ -271,8 +271,15 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </ScrollView>
-          <Pressable style={{marginTop:20, justifyContent:"center", alignItems:"center" }}>
-            <Image style={{width:200, height:50, resizeMode:"cover"}}
+          <Pressable
+            style={{
+              marginTop: 20,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={{ width: 200, height: 50, resizeMode: "cover" }}
               source={reservaIcon}
             />
           </Pressable>
@@ -368,7 +375,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setRooms((c) => c + 1)}
+                  onPress={() => setRooms((c) => c + 1)} //c is the current value of the state
                   style={{
                     width: 26,
                     height: 26,
@@ -535,7 +542,7 @@ const HomeScreen = () => {
         </View>
         {/* //The parent component must have the relative tag and button should have an absolute tag. */}
         <Button
-          title="Hide modal"
+          title="Apply"
           onPress={toggleModal}
           style={{ position: "relative", bottom: 0 }}
           color="#0047AB"
