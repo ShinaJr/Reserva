@@ -4,9 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
 const SearchScreen = () => {
-    //initializing a state to track what the user is typing in the input field
-    const [input, setInput] = useState("");
-    
+  //initializing a state to track what the user is typing in the input field
+  const [input, setInput] = useState("");
+  // console.warn(input)
+
   return (
     <SafeAreaView>
       <View
@@ -16,12 +17,16 @@ const SearchScreen = () => {
           alignItems: "center",
           padding: 10,
           margin: 15,
-          borderWidth:3,
-          borderRadius:10,
-          borderColor:"#FFC40C"
+          borderWidth: 3,
+          borderRadius: 10,
+          borderColor: "#FFC40C",
         }}
       >
-        <TextInput value={input} onChangeText={(text) => setInput(text)} placeholder="Enter Your Destination" />
+        <TextInput
+          value={input}
+          onChangeText={(text) => setInput(text)}
+          placeholder="Enter Your Destination"
+        />
         <Ionicons name="search" size={22} color="black" />
       </View>
     </SafeAreaView>
